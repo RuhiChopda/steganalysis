@@ -1,0 +1,104 @@
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    color: #ffa500;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    background-color: #292929;
+    border: 1px solid #444;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+button {
+    padding: 12px 30px;
+    background-color: #ff9900;
+    color: #121212;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffb347;
+}
+
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.result-section {
+    margin-top: 25px;
+}
+
+.result-section h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.result-section p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.batch-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.batch-button:hover {
+    background-color: #3399ff;
+}
+
+table img {
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.download-button {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #45cc5b;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Batch Steganalysis Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #555;
+    }
+
+    th {
+      background-color: #ffa500;
+      color: #121212;
+    }
+
+    tr:hover {
+      background-color: #292929;
+    }
+
+    .uncertain {
+      color: #ffcc00;
+    }
+
+    .stego {
+      color: #ff4c4c;
+    }
+
+    .clean {
+      color: #8aff8a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Batch Analysis – Stego Folder</h1>
+
+    <!-- Bar Chart -->
+    <canvas id="resultChart" width="600" height="300" style="margin-top: 20px;"></canvas>
+    <script>
+      const ctx = document.getElementById('resultChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Clean', 'Stego', 'Uncertain'],
+          datasets: [{
+            label: 'Image Count',
+            data: [{{ clean_count }}, {{ stego_count }}, {{ uncertain_count }}],
+            backgroundColor: ['#8aff8a', '#ff4c4c', '#ffcc00']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    </script>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Clean %</th>
+          <th>Stego %</th>
+          <th>Prediction</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+        <tr>
+          <td>
+            <img src="{{ url_for('static', filename='preview/' + result.filename) }}" alt="{{ result.filename }}" width="100"><br>
+            {{ result.filename }}
+          </td>
+          <td>{{ result.clean_prob }}%</td>
+          <td>{{ result.stego_prob }}%</td>
+          <td class="{{ result.label|lower }}">{{ result.label }}</td>
+          <td>{{ result.confidence }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <a href="/download_csv" class="download-button">⬇ Download Results as CSV</a>
+    <br><br>
+    <a href="/" style="color: #ffa500;">← Back to Home</a>
+  </div>
+</body>
+</html>
