@@ -1,18 +1,18 @@
-# Use an older compatible Python base image
+# Use a compatible Python version
 FROM python:3.10
 
 # Set working directory
 WORKDIR /app
 
-# Copy your files
+# Copy files
 COPY . .
 
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose the port Flask runs on
+# Expose port
 EXPOSE 5000
 
-# Run the app
-CMD ["python", "app.py"]
+# Start the Flask app with gunicorn
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
